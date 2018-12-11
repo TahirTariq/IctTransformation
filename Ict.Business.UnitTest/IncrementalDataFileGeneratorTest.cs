@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IctTriangle.Business.Models;
-using IctTriangle.Business.DataReaders;
-using IctTriangle.Business.Interfaces;
-using IctTriangle.Business.Services;
-using IctTriangle.Business.Helper;
+﻿using Ict.Business.DataReaders;
+using Ict.Business.Interfaces;
+using Ict.Business.Models;
+using Ict.Business.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IctTriangle.Business.UnitTests
+namespace Ict.Business.UnitTests
 {
 
     [TestClass]

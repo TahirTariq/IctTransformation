@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using IctTriangle.Business.Enums;
-using IctTriangle.Business.Interfaces;
+using Ict.Business.Interfaces;
+using Ict.Business.Enums;
 
-namespace IctTriangle.Business.Models
+namespace Ict.Business.Models
 {
     /// <summary>
     /// This is a abstract base class wrapper over <see cref="IIncrementalRecordProvider"/>

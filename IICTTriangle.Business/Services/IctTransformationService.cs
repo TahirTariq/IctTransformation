@@ -1,28 +1,28 @@
 ﻿using System;
-using IctTriangle.Business.DataReaders;
-using IctTriangle.Business.Interfaces;
-using IctTriangle.Business.Models;
+using Ict.Business.Interfaces;
+using Ict.Business.DataReaders;
+using Ict.Business.Models;
 
-namespace IctTriangle.Business.Services
+namespace Ict.Business.Services
 {
-    public class IctTransformationService
+    public class IctTransformationService : IIctTransformationService
     {
-        public IncrementalDataFile ReadIncrementalCsvData(string data)
+        public IncrementalDataFile ReadIncrementalCsvData(string csvData)
         {
-            IIncrementalRecordProvider csvFileReader = new IncrementalRecordCsvReader(data);
+            IIncrementalRecordProvider csvFileReader = new IncrementalRecordCsvReader(csvData);
             
             return new IncrementalDataFileGenerator(csvFileReader);
         }    
 
-        public TriangleDataFile CreateCumulativeData(IncrementalDataFile claimsFile)
+        public TriangleDataFile CreateCumulativeData(IncrementalDataFile incrementalDataFile)
         {
-            if (claimsFile == null)
-                throw new ArgumentNullException(nameof(claimsFile));
+            if (incrementalDataFile == null)
+                throw new ArgumentNullException(nameof(incrementalDataFile));
 
-            if(!claimsFile.IsValid)
+            if(!incrementalDataFile.IsValid)
                 throw new ArgumentException("invalid IncrementalDataFile");
 
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(claimsFile);
+            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
 
             TriangleDataFile incrementalTrianglesFile = trianglesGenerator.GenerateIncrementalTriangles();
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace IctTriangle.Business.Models
+namespace Ict.Business.Models
 {
     public class Triangle
     {

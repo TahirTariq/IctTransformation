@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Ict.Business.Helper;
 
-namespace IctTriangle.Business.Models
+namespace Ict.Business.Models
 {
     public class TriangleDataFile
     {
@@ -8,6 +9,6 @@ namespace IctTriangle.Business.Models
 
         public int DevelopmentYears { get; set; }
 
-        public Dictionary<string, Triangle> ProductTriangles { get; set; }
+        public Dictionary<string, Triangle> ProductTriangles { get; set; }      
     }
 }

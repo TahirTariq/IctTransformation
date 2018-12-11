@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using IctTriangle.Business.Interfaces;
-using IctTriangle.Business.Models;
+using Ict.Business.Interfaces;
+using Ict.Business.Models;
 
-namespace IctTriangle.Business.Services
+namespace Ict.Business.Services
 {
     public class IncrementalTrianglesGenerator : IIncrementalTrianglesGenerator
     {

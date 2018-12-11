@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using IctTriangle.Business.Models;
+using Ict.Business.Models;
 
-namespace IctTriangle.Business.Helper
+namespace Ict.Business.Helper
 {
     public static class TriangleDataFileExportHelper
     {

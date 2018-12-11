@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace IctTriangle
@@ -13,6 +14,9 @@ namespace IctTriangle
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain")); 
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

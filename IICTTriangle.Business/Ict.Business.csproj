@@ -52,6 +52,7 @@
     <Compile Include="Enums\IncrementalDataFileStatus.cs" />
     <Compile Include="Helper\TriangleDataFileExportHelper.cs" />
     <Compile Include="Interfaces\IIctFileReader.cs" />
+    <Compile Include="Interfaces\IIctTransformationService.cs" />
     <Compile Include="Interfaces\IIncrementalRecordValidator.cs" />
     <Compile Include="Interfaces\IIncrementalTrianglesGenerator.cs" />
     <Compile Include="Models\TriangleDataFile.cs" />

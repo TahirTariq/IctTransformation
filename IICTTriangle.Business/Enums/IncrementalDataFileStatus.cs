@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IctTriangle.Business.Enums
+namespace Ict.Business.Enums
 {
     [Flags]
     public enum IncrementalDataFileStatus

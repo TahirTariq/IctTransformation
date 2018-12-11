@@ -1,6 +1,6 @@
-﻿using IctTriangle.Business.Models;
+﻿using Ict.Business.Models;
 
-namespace IctTriangle.Business.Interfaces
+namespace Ict.Business.Interfaces
 {
     public interface IIncrementalRecordValidator
     {        

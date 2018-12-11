@@ -1,13 +1,13 @@
 ﻿using System;
+using Ict.Business.DataReaders;
+using Ict.Business.Helper;
+using Ict.Business.Interfaces;
+using Ict.Business.Models;
+using Ict.Business.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IctTriangle.Business.Models;
-using IctTriangle.Business.DataReaders;
-using IctTriangle.Business.Interfaces;
-using IctTriangle.Business.Services;
-using IctTriangle.Business.Helper;
-namespace IctTriangle.Business.UnitTests
-{
 
+namespace Ict.Business.UnitTests
+{
     [TestClass]
     public class IncrementalTrianglesGeneratorTest
     {
@@ -121,10 +121,10 @@ namespace IctTriangle.Business.UnitTests
                             Basic,1995,1997,200
                             Basic,1996,1996,80
                             basic,1996,1997,40
-                            Basic,1997,1997,40
+                            Basic,1997,1997,120
                           ";
 
-            string expected = "1995, 3\r\nBasic,100,50,200,80,40,40\r\n";
+            string expected = "1995, 3\r\nBasic,100,50,200,80,40,120\r\n";
 
             IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
 

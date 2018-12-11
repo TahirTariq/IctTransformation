@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
-using IctTriangle.Business.Interfaces;
-using IctTriangle.Business.Models;
-using IctTriangle.Business.Services;
+using Ict.Business.Interfaces;
+using Ict.Business.Models;
 
-namespace IctTriangle.Business.DataReaders
+namespace Ict.Business.DataReaders
 {
     /// <summary>
     /// One of implementation of <see cref="IIncrementalRecordProvider"/> 

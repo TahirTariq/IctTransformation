@@ -1,4 +1,4 @@
-﻿namespace IctTriangle.Business.Models
+﻿namespace Ict.Business.Models
 {
     public class IncrementalRecord
     {
