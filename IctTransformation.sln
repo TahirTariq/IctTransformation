@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctTriangle", "ICTTriangle\IctTriangle.csproj", "{762B991C-B01E-4ABA-AB07-B31DEB17A0F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ict.Api", "ICTTriangle\Ict.Api.csproj", "{762B991C-B01E-4ABA-AB07-B31DEB17A0F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctTriangle.Business", "IICTTriangle.Business\IctTriangle.Business.csproj", "{731731AF-DDF6-493F-9B29-B35984882BB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ict.Business", "IICTTriangle.Business\Ict.Business.csproj", "{731731AF-DDF6-493F-9B29-B35984882BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctTriangle.Business.UnitTests", "ICTTriangle.BusinessUnitTests\IctTriangle.Business.UnitTests.csproj", "{33C3A905-B4F1-4FF9-AAAC-DB9F0104178A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ict.Business.UnitTests", "ICTTriangle.BusinessUnitTests\Ict.Business.UnitTests.csproj", "{33C3A905-B4F1-4FF9-AAAC-DB9F0104178A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

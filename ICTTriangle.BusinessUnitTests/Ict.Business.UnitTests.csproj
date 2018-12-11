@@ -7,8 +7,8 @@
     <ProjectGuid>{33C3A905-B4F1-4FF9-AAAC-DB9F0104178A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ICTTriangle.Business.UnitTests</RootNamespace>
-    <AssemblyName>ICTTriangle.Business.UnitTests</AssemblyName>
+    <RootNamespace>Ict.Business.UnitTests</RootNamespace>
+    <AssemblyName>Ict.Business.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -67,9 +67,9 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IICTTriangle.Business\IctTriangle.Business.csproj">
+    <ProjectReference Include="..\IICTTriangle.Business\Ict.Business.csproj">
       <Project>{731731af-ddf6-493f-9b29-b35984882bb3}</Project>
-      <Name>IctTriangle.Business</Name>
+      <Name>Ict.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

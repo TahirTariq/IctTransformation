@@ -7,8 +7,8 @@
     <ProjectGuid>{731731AF-DDF6-493F-9B29-B35984882BB3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IctTriangle.Business</RootNamespace>
-    <AssemblyName>IctTriangle.Business</AssemblyName>
+    <RootNamespace>Ict.Business</RootNamespace>
+    <AssemblyName>Ict.Business</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
