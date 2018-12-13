@@ -47,21 +47,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataReaders\IncrementalRecordCsvReader.cs" />
-    <Compile Include="DataReaders\IncrementalRecordDbReader.cs" />
     <Compile Include="DataReaders\IncrementalRecordDefaultValidator.cs" />
     <Compile Include="Enums\IncrementalDataFileStatus.cs" />
     <Compile Include="Helper\TriangleDataFileExportHelper.cs" />
     <Compile Include="Interfaces\IIctFileReader.cs" />
-    <Compile Include="Interfaces\IIctTransformationService.cs" />
     <Compile Include="Interfaces\IIncrementalRecordValidator.cs" />
     <Compile Include="Interfaces\IIncrementalTrianglesGenerator.cs" />
+    <Compile Include="Interfaces\IIncrementalReaderService.cs" />
     <Compile Include="Models\TriangleDataFile.cs" />
     <Compile Include="Models\IncrementalDataFile.cs" />
     <Compile Include="Models\IncrementalRecord.cs" />
     <Compile Include="Models\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IncrementalDataFileGenerator.cs" />
-    <Compile Include="Services\IctTransformationService.cs" />
+    <Compile Include="Services\IncrementalReaderService.cs" />
     <Compile Include="Services\IncrementalTrianglesGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

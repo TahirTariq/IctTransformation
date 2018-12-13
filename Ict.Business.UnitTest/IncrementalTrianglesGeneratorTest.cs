@@ -11,17 +11,27 @@ namespace Ict.Business.UnitTests
     [TestClass]
     public class IncrementalTrianglesGeneratorTest
     {
+        private IIncrementalReaderService _readerService;
+        private IIncrementalTrianglesGenerator _trianglesGenerator;
+
+        [TestInitialize]        
+        public void TestInitialize()
+        {
+            _readerService = new IncrementalReaderService();
+            _trianglesGenerator = new IncrementalTrianglesGenerator();
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Null_File_Test()
         {
             string data = null;
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
-
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
+            
+            Assert.IsNull(triangleDataFile);
         }
 
         [TestMethod]
@@ -30,11 +40,11 @@ namespace Ict.Business.UnitTests
         {
             string data = @"";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
+            Assert.IsNull(triangleDataFile);
         }
 
         [TestMethod]
@@ -44,13 +54,11 @@ namespace Ict.Business.UnitTests
             string data = @"Product, EarliestOriginYear, DevelopmentYear, IncrementalValue
                             ,1995,1995,100";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            Assert.IsFalse(incrementalDataFile.IsValid);
+            Assert.IsNull(triangleDataFile);            
         }
 
         [TestMethod]
@@ -59,14 +67,11 @@ namespace Ict.Business.UnitTests
             string data = @"Product, Earliest OriginYear, Development Year, Incremental Value,
                             P1,1995,1995,100";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
-
+            Assert.IsNotNull(triangleDataFile);
             Assert.AreEqual(triangleDataFile.ProductTriangles.Count, 1);
             Assert.AreEqual(triangleDataFile.EarliestOriginYear, 1995);
             Assert.AreEqual(triangleDataFile.DevelopmentYears, 1);
@@ -78,13 +83,9 @@ namespace Ict.Business.UnitTests
             string data = @"Product, EarliestOriginYear, DevelopmentYear, IncrementalValue
                             P1,1995,1995,100";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
-
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
             Assert.AreEqual(triangleDataFile.ProductTriangles.Count, 1);
             Assert.AreEqual(triangleDataFile.EarliestOriginYear, 1995);
@@ -99,13 +100,9 @@ namespace Ict.Business.UnitTests
 
             string expected = "1995, 1\r\nP1,100\r\n";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
-
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
             
             string result = triangleDataFile.ToCsvString();
             
@@ -126,13 +123,9 @@ namespace Ict.Business.UnitTests
 
             string expected = "1995, 3\r\nBasic,100,50,200,80,40,120\r\n";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
-
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
             string result = triangleDataFile.ToCsvString();
 
@@ -159,13 +152,32 @@ namespace Ict.Business.UnitTests
 
             string expected = "1990, 4\r\nComp,0,0,0,0,0,0,0,110,170,200\r\nNon-Comp,45.2,64.8,0,37,50,75,25,55,85,100\r\n";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateIncrementalTriangles(incrementalDataFile);
 
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
+            string result = triangleDataFile.ToCsvString();
 
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Basic_Product_Cumulative_Csv_Test()
+        {
+            string data = @"Product, EarliestOriginYear, DevelopmentYear, IncrementalValue
+                            Basic,1995,1995,100
+                            basic,1995,1996,50
+                            Basic,1995,1997,200
+                            Basic,1996,1996,80
+                            basic,1996,1997,40
+                            Basic,1997,1997,120
+                          ";
+
+            string expected = "1995, 3\r\nBasic,100,150,350,80,120,120\r\n";
+
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
+
+            TriangleDataFile triangleDataFile = _trianglesGenerator.GenerateCumulativeTriangles(incrementalDataFile);
 
             string result = triangleDataFile.ToCsvString();
 
@@ -193,15 +205,9 @@ namespace Ict.Business.UnitTests
             string expected =
                 "1990, 4\r\nComp,0,0,0,0,0,0,0,110,280,200\r\nNon-Comp,45.2,110,110,147,50,125,150,55,140,100\r\n";
 
-            IIncrementalRecordProvider fileReader = new IncrementalRecordCsvReader(data);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(data);
 
-            IncrementalDataFile incrementalDataFile = new IncrementalDataFileGenerator(fileReader);
-
-            IIncrementalTrianglesGenerator trianglesGenerator = new IncrementalTrianglesGenerator(incrementalDataFile);
-
-            TriangleDataFile triangleDataFile = trianglesGenerator.GenerateIncrementalTriangles();
-
-            TriangleDataFile cumulativeTriangles = trianglesGenerator.GenerateCumulativeTriangles(triangleDataFile);
+            TriangleDataFile cumulativeTriangles = _trianglesGenerator.GenerateCumulativeTriangles(incrementalDataFile);
 
             string result = cumulativeTriangles.ToCsvString();
 

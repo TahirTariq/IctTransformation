@@ -5,18 +5,16 @@ namespace Ict.Business.Models
 {
     public class Triangle
     {
-        private readonly int _earliestOriginYear;
-        private readonly int _developmentYears;
         private double[][] _triangle;
 
-        public int EarliestOriginYear => _earliestOriginYear;
+        public int EarliestOriginYear { get; }
 
-        public int DevelopmentYears => _developmentYears;
+        public int DevelopmentYears { get; }
 
         public Triangle(int earliestOriginYear, int developmentYears)
         {
-            _earliestOriginYear = earliestOriginYear;
-            _developmentYears = developmentYears;
+            EarliestOriginYear = earliestOriginYear;
+            DevelopmentYears = developmentYears;
             _triangle = new double[developmentYears][];
 
             CreateTriangle();

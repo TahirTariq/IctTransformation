@@ -11,16 +11,18 @@ namespace IctTriangle.Controllers
 {
     public class IctController : ApiController
     {
-        public IIctTransformationService TransformationService { get; }
-
-        public IctController(IIctTransformationService transformationService)
+        private readonly IIncrementalTrianglesGenerator _trianglesGenerator;
+        private readonly IIncrementalReaderService _readerService;
+        public IctController(IIncrementalReaderService readerService, IIncrementalTrianglesGenerator trianglesGenerator)
         {
-            TransformationService = transformationService;
+            _readerService = readerService;
+            _trianglesGenerator = trianglesGenerator;
         }
 
         public IctController()
         {
-            TransformationService = new IctTransformationService();
+            _trianglesGenerator = new IncrementalTrianglesGenerator();
+            _readerService = new IncrementalReaderService();
         }
 
         [HttpPost, Route("api/ict/accumulate")]
@@ -31,16 +33,15 @@ namespace IctTriangle.Controllers
 
             string csvData = await GetFileContent();
 
-            IncrementalDataFile incrementalDataFile = TransformationService.ReadIncrementalCsvData(csvData);
+            IncrementalDataFile incrementalDataFile = _readerService.ReadCsvData(csvData);
 
             if (!incrementalDataFile.IsValid)
-            {
-                // TODO : can improve here
+            {                
                 return BadRequest(incrementalDataFile.Status.ToString());
             }
 
             TriangleDataFile cumulativeTriangleDataFile =
-                TransformationService.CreateCumulativeData(incrementalDataFile);
+                _trianglesGenerator.GenerateCumulativeTriangles(incrementalDataFile);
 
             string cumulativeCsv = cumulativeTriangleDataFile.ToCsvString();
 

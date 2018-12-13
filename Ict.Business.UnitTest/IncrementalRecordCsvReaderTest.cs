@@ -6,15 +6,7 @@ using Ict.Business.Interfaces;
 using Ict.Business.Models;
 
 namespace Ict.Business.UnitTests
-{
-
-    /// <summary>
-    /// array size = max - min + 1
-    ///row = origin - min
-    ///index = year - origin
-    ///export 
-    ///inner loop size =  maxindex - rowindex
-    /// </summary>
+{   
     [TestClass]
     public class IncrementalRecordCsvReaderTest
     {

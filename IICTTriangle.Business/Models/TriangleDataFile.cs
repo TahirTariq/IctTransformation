@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
-using Ict.Business.Helper;
 
 namespace Ict.Business.Models
 {
     public class TriangleDataFile
     {
-        public int EarliestOriginYear { get; set; }
+        public TriangleDataFile(int earliestOriginYear, int developmentYears, Dictionary<string, Triangle> triangles)
+        {
+            EarliestOriginYear = earliestOriginYear;
+            DevelopmentYears = developmentYears;
+            ProductTriangles = triangles;
+        }
 
-        public int DevelopmentYears { get; set; }
+        public int EarliestOriginYear { get; }
 
-        public Dictionary<string, Triangle> ProductTriangles { get; set; }      
+        public int DevelopmentYears { get; }
+
+        public Dictionary<string, Triangle> ProductTriangles { get; }      
     }
 }
